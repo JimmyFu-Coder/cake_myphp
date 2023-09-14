@@ -17,7 +17,7 @@ class BlogsController extends AppController
 
         $articles = $this->Articles->find()
             ->order(['Articles.id DESC']);
-        $articleList = $this->Articles->find('list');
+        $articleList = $this->Articles->find('list')->limit('8');
 
         $this->set('articles', $this->paginate($articles,['limit'=>'3']));
         $this->set('articleList', $articleList);

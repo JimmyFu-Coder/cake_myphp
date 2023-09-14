@@ -6,7 +6,7 @@
             <h3 style="color: #fff;" class="bg-info text-capitalize p-1">Recent Post</h3>
             <ul class="list-group list-group-flush">
               <?php foreach ($articleList as $key => $articleTitle): ?>
-                  <li class="list-group-item"><a href ="#"><?= $articleTitle ?></a></li>
+                  <li class="list-group-item"><a href = <?= $this->Url->build(['controller'=>'Blogs', 'action'=>'view', $key])?>><?= $articleTitle ?></a></li>
               <?php endforeach; ?>
             </ul>
         </div>
