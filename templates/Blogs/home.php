@@ -15,7 +15,7 @@
             <div class="row">
                <div class="list-group ">
                 <?php foreach($articles  as $key => $articles): ?>
-                  <a href="#" class="list-group-item list-group-item-action flex-column mb-2">
+                  <a href=<?= $this->Url->build(['controller'=>'Blogs', 'action'=>'view',$articles->id]) ?> class="list-group-item list-group-item-action flex-column mb-2">
                     <div class="d-flex w-100 justify-content-between">
                       <h5 class="mb-1"><?= $articles->title ?></h5>
                       <small>3 days ago</small>

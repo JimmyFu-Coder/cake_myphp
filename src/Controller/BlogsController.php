@@ -30,4 +30,11 @@ class BlogsController extends AppController
     public function contact()
     {
     }
+
+    public function view($id)
+    {
+        $this->loadModel('Articles');
+        $article = $this->Articles->get($id);
+        $this->set('article', $article);
+    }
 }
