@@ -31,7 +31,7 @@ class BlogsController extends AppController
     {
     }
 
-    public function view($id)
+    public function view($id = null)
     {
         $this->loadModel('Articles');
         $article = $this->Articles->get($id);

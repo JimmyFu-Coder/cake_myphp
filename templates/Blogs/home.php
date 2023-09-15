@@ -20,11 +20,21 @@
                       <h5 class="mb-1"><?= $articles->title ?></h5>
                       <small>3 days ago</small>
                     </div>
-                    <p class="mb-1"><?= $articles->details ?></p>
+                    <p class="mb-1">
+                        <?=
+                        $this->Text->truncate(
+                            $articles->details,
+                            280,
+                            [
+                                'ellipsis' => '...',
+                                'exact' => false
+                            ]
+                        ) ?>
+                    </p>
                     <small>Donec id elit non mi porta.</small>
                   </a>
                  <?php endforeach; ?>
-            
+
                  <ul class='pagination'>
                   <?= $this->Paginator->prev("<<") ?>
                   <?= $this->Paginator->numbers() ?>
@@ -36,5 +46,5 @@
     </div>
 
     </div>
-    
+
     </div>
