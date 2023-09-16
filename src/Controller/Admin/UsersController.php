@@ -38,7 +38,7 @@ class UsersController extends AppController
     {
         $key = $this->request->getQuery('key');
         if($key){
-            $query = $this->Users->find('all')->where(['Or'=> ['username like'=>"%$key%",'email like'=>"%$key%"]]);
+            $query = $this->Users->findByUsernameOrEmail($key, $key);
         }else{
             $query = $this->Users;
         }
