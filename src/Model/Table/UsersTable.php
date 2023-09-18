@@ -95,6 +95,18 @@ class UsersTable extends Table
         $validator
             ->notEmptyString('status');
 
+        $validator
+            ->allowEmptyFile('image')
+            ->add( 'image', [
+                'mimeType' => [
+                    'rule' => [ 'mimeType', [ 'image/jpg', 'image/png', 'image/jpeg' ] ],
+                    'message' => 'Please upload only jpg and png.',
+                ],
+                'fileSize' => [
+                    'rule' => [ 'fileSize', '<=', '1MB' ],
+                    'message' => 'Image file size must be less than 1MB.',
+                ],
+            ] );
         return $validator;
     }
 
