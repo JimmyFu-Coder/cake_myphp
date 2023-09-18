@@ -23,6 +23,12 @@ class UsersController extends AppController
             $user = $this->Auth->identify();
             if($user){
                 $this->Auth->setUser($user);
+
+                if($user['status'] == 0)
+                {
+                    $this->Flash->error('you have not get the permission !');
+                    return $this->redirect(['controller'=>'Users', 'action'=>'logout']);
+                }
                 return $this->redirect(['controller'=>'Users', 'action'=>'index']);
             }else{
                 $this->Flash->error('Incorrect username or password !');
@@ -160,5 +166,20 @@ class UsersController extends AppController
         }
 
         return $this->redirect(['action'=>'index']);
+    }
+    public  function userStatus($id = null, $status)
+    {
+        $this ->request ->allowMethod(['post']);
+        $user = $this->Users->get($id);
+        if($status == 1)
+            $user->status = 0;
+        else
+            $user->status = 1;
+
+        if($this->Users->save($user))
+        {
+            $this->Flash->success(__('The users status has changed'));
+        }
+        return $this-> redirect(['action' => 'index']);
     }
 }
