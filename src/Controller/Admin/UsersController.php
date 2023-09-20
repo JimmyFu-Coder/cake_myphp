@@ -19,11 +19,12 @@ class UsersController extends AppController
      */
     public  function  login()
     {
+
         if($this->request->is('post')){
             $user = $this->Auth->identify();
             if($user){
                 $this->Auth->setUser($user);
-
+                $this->UserLogs->saveIP($this->Auth->user('id'));
                 if($user['status'] == 0)
                 {
                     $this->Flash->error('you have not get the permission !');

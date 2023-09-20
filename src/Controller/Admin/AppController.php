@@ -46,7 +46,7 @@ class AppController extends Controller
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
         $this->loadComponent('Auth');
-
+        $this->loadComponent('UserLogs');
         $this->set('username',$this->Auth->user('username'));
         /*
          * Enable the following component for recommended CakePHP form protection settings.
