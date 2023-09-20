@@ -17,29 +17,48 @@ class UsersController extends AppController
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
-    public  function  login()
+//    public  function  login()
+//    {
+//
+//        if($this->request->is('post')){
+//            $user = $this->Auth->identify();
+//            if($user){
+//                $this->Auth->setUser($user);
+//                $this->UserLogs->saveIP($this->Auth->user('id'));
+//                if($user['status'] == 0)
+//                {
+//                    $this->Flash->error('you have not get the permission !');
+//                    return $this->redirect(['controller'=>'Users', 'action'=>'logout']);
+//                }
+//                return $this->redirect(['controller'=>'Users', 'action'=>'index']);
+//            }else{
+//                $this->Flash->error('Incorrect username or password !');
+//            }
+//        }
+//    }
+    public function login()
     {
+        $this->request->allowMethod(['get', 'post']);
+        $result = $this->Authentication->getResult();
+        // regardless of POST or GET, redirect if user is logged in
+        if ($result && $result->isValid()) {
+            // redirect to /articles after login success
 
-        if($this->request->is('post')){
-            $user = $this->Auth->identify();
-            if($user){
-                $this->Auth->setUser($user);
-                $this->UserLogs->saveIP($this->Auth->user('id'));
-                if($user['status'] == 0)
-                {
-                    $this->Flash->error('you have not get the permission !');
-                    return $this->redirect(['controller'=>'Users', 'action'=>'logout']);
-                }
-                return $this->redirect(['controller'=>'Users', 'action'=>'index']);
-            }else{
-                $this->Flash->error('Incorrect username or password !');
-            }
+            return $this->redirect(['Controller'=>"Users", 'action'=>'index']);
+        }
+        // display error if user submitted and authentication failed
+        if ($this->request->is('post') && !$result->isValid()) {
+            $this->Flash->error(__('Invalid username or password'));
         }
     }
-
     public function logout()
     {
-        return $this->redirect($this->Auth->logout());
+        $result = $this->Authentication->getResult();
+        // regardless of POST or GET, redirect if user is logged in
+        if ($result && $result->isValid()) {
+            $this->Authentication->logout();
+            return $this->redirect(['controller' => 'Users', 'action' => 'login']);
+        }
     }
     public function index()
     {
