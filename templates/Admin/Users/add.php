@@ -23,11 +23,12 @@
                     echo $this->Form->control('profile.mobile');
                     echo $this->Form->control('image_file', ['type'=>'file']);
                     echo $this->Form->control('skills.0.name');
-                    echo $this->Form->control('skills.0.name');
+                    echo $this->Form->control('skills.1.name');
                 ?>
             </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
+            <?= $this->Form->button(__('Submit'), ['id'=>'cakebtn']) ?>
             <?= $this->Form->end() ?>
         </div>
     </div>
 </div>
+

@@ -208,4 +208,10 @@ class UsersController extends AppController
         }
         return $this-> redirect(['action' => 'index']);
     }
+
+    public function receive()
+    {
+        $id = $this->request->getData('id');
+
+    }
 }
