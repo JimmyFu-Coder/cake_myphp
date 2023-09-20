@@ -1,5 +1,13 @@
+<?php
+    $this->Breadcrumbs->add(
+        'Home',
+        ['controller'=>'Blogs','action'=>'home'],
+        ['class'=>'breadcrumb-item active']
+    )
+?>
 
-    <div class="container">
+
+<div class="container">
 
     <div class="row">
         <div class="col-4">

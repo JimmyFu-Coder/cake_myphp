@@ -22,8 +22,8 @@ class SkillsFixture extends TestFixture
                 'id' => 1,
                 'user_id' => 1,
                 'name' => 'Lorem ipsum dolor sit amet',
-                'created' => '2023-09-20 04:17:20',
-                'modified' => '2023-09-20 04:17:20',
+                'created' => '2023-09-20 09:43:18',
+                'modified' => '2023-09-20 09:43:18',
             ],
         ];
         parent::init();
